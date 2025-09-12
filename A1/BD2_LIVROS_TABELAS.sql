@@ -1,0 +1,125 @@
+CREATE TABLE CATEGORIA (
+    cod_categoria NUMBER(2) NOT NULL,
+    nome VARCHAR2(50) NOT NULL,
+    cod_categoria_pai NUMBER(2),
+    CONSTRAINT PK_CATEGORIA PRIMARY KEY (cod_categoria),
+    CONSTRAINT FK_CATEGORIA_PAI FOREIGN KEY (cod_categoria_pai) REFERENCES CATEGORIA (cod_categoria)
+);
+
+
+CREATE TABLE CLIENTE (
+    cod_cliente NUMBER(5) NOT NULL,
+    nome VARCHAR2(100) NOT NULL,
+    data_cadastro DATE NOT NULL,
+    tipo CHAR(1) NOT NULL,
+    CONSTRAINT PK_CLIENTE PRIMARY KEY (cod_cliente)
+);
+
+
+CREATE TABLE ENTREGA (
+    num_entrega NUMBER(10) NOT NULL,
+    data DATE NOT NULL,
+    placa CHAR(8) NOT NULL,
+    mot_cnh NUMBER(11) NOT NULL,
+    mot_nome VARCHAR2(100) NOT NULL,
+    cod_endereco NUMERIC(2) NOT NULL,
+    CONSTRAINT PK_ENTREGA PRIMARY KEY (num_entrega),
+    CONSTRAINT FK_ENTREGA_ENDERECO FOREIGN KEY (cod_endereco) REFERENCES ENDERECO(cod_endereco)
+);
+
+
+CREATE TABLE ESTADO (
+    uf CHAR(2) NOT NULL,
+    nome VARCHAR2(50) NOT NULL,
+    regiao CHAR(2) NOT NULL,
+    CONSTRAINT PK_ESTADO PRIMARY KEY (uf)
+);
+
+
+CREATE TABLE PEDIDO (
+    num_pedido NUMBER(10) NOT NULL,
+    data_emissao DATE NOT NULL,
+    cod_cliente NUMBER(5) NOT NULL,
+    matricula NUMERIC(5),
+    CONSTRAINT PK_PEDIDO PRIMARY KEY (num_pedido),
+    CONSTRAINT FK_PEDIDO_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTE (cod_cliente),
+    CONSTRAINT FK_MATRICULA_FUNCIONARIO FOREIGN KEY (matricula) REFERENCES FUNCIONARIO (matricula)
+);
+
+CREATE TABLE PESSOA_JURIDICA (
+    cod_cliente NUMBER(5) NOT NULL,
+    cnpj CHAR(18) NOT NULL,
+    razao_social VARCHAR2(100) NOT NULL,
+    CONSTRAINT PK_PESSOA_JURIDICA PRIMARY KEY (cod_cliente),
+    CONSTRAINT FK_PESSOA_JURIDICA_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTE (cod_cliente)
+);
+
+CREATE TABLE PRODUTO (
+    cod_produto NUMBER(3) NOT NULL,
+    nome VARCHAR2(100) NOT NULL,
+    data_lancamento DATE NOT NULL,
+    importado CHAR(1) NOT NULL,
+    preco NUMBER(8,2) NOT NULL,
+    prazo_entrega NUMBER(3) NOT NULL,
+    cod_categoria NUMBER(2) NOT NULL,
+    quantidade_estoque NUMBER(5),
+    CONSTRAINT PK_PRODUTO PRIMARY KEY (cod_produto),
+    CONSTRAINT FK_PRODUTO_CATEGORIA FOREIGN KEY (cod_categoria) REFERENCES CATEGORIA (cod_categoria)
+);
+
+
+CREATE TABLE CIDADE (
+    cod_cidade NUMBER(5) NOT NULL,
+    nome VARCHAR2(80) NOT NULL,
+    uf CHAR(2) NOT NULL,
+    CONSTRAINT PK_CIDADE PRIMARY KEY (cod_cidade),
+    CONSTRAINT FK_CIDADE_ESTADO FOREIGN KEY (uf) REFERENCES ESTADO (uf)
+);
+
+CREATE TABLE ENDERECO (
+ cod_endereco NUMERIC(2) NOT NULL,
+ rua VARCHAR2(80) NOT NULL,
+ numero NUMBER(6) NOT NULL,
+ complemento VARCHAR2(20),
+ cep NUMBER(8) NOT NULL,
+ cod_cidade NUMBER(5) NOT NULL,
+ cod_cliente NUMBER(5) NOT NULL,
+ CONSTRAINT PK_ENDERECO PRIMARY KEY (cod_endereco),
+ CONSTRAINT FK_ENDERECO_CIDADE FOREIGN KEY (cod_cidade) REFERENCES CIDADE (cod_cidade),
+ CONSTRAINT FK_ENDERECO_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTE (cod_cliente)
+);
+
+
+CREATE TABLE ITEM_PEDIDO (
+    num_pedido NUMBER(10) NOT NULL,
+    cod_produto NUMBER(3) NOT NULL,
+    quantidade NUMBER(4),
+    num_entrega NUMBER(10),
+    CONSTRAINT PK_ITEM_PEDIDO PRIMARY KEY (num_pedido, cod_produto),
+    CONSTRAINT FK_ITEM_PEDIDO_PEDIDO FOREIGN KEY (num_pedido) REFERENCES PEDIDO (num_pedido),
+    CONSTRAINT FK_ITEM_PEDIDO_PRODUTO FOREIGN KEY (cod_produto) REFERENCES PRODUTO (cod_produto),
+    CONSTRAINT FK_ITEM_PEDIDO_ENTREGA FOREIGN KEY (num_entrega) REFERENCES ENTREGA (num_entrega)
+);
+
+
+CREATE TABLE PESSOA_FISICA (
+    cod_cliente NUMBER(5) NOT NULL,
+    cpf CHAR(14) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    genero CHAR(1) NOT NULL,
+    cod_empresa NUMBER(5),
+    CONSTRAINT PK_PESSOA_FISICA PRIMARY KEY (cod_cliente),
+    CONSTRAINT FK_PESSOA_FISICA_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTE (cod_cliente),
+    CONSTRAINT FK_PESSOA_FISICA_EMPRESA FOREIGN KEY (cod_empresa) REFERENCES PESSOA_JURIDICA (cod_cliente)
+);
+
+
+CREATE TABLE TELEFONE (
+    id_telefone NUMBER NOT NULL,
+    ddd NUMBER(2) NOT NULL,
+    numero NUMBER(9) NOT NULL,
+    cod_cliente NUMBER(5) NOT NULL,
+    CONSTRAINT PK_TELEFONE PRIMARY KEY (id_telefone),
+    CONSTRAINT FK_TELEFONE_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES PESSOA_FISICA (cod_cliente)
+);
+
