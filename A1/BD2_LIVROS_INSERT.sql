@@ -520,15 +520,15 @@ INSERT INTO ITEM_PEDIDO (num_pedido,cod_produto,quantidade,num_entrega) VALUES (
 INSERT INTO ITEM_PEDIDO (num_pedido,cod_produto,quantidade,num_entrega) VALUES ('8922','591','5','1107');
 COMMIT;
 
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (128, 1, 'S');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (129, 2, 'S');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (145, 3, 'N');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (146, 4, 'S');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (148, 4, 'S');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (158, 6, 'N');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (167, 7, 'S');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (171, 3, 'S');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (201, 9, 'N');
-INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (223, 10, 'S');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (128, 1, 'V');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (129, 2, 'V');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (145, 3, 'F');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (146, 4, 'V');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (148, 4, 'V');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (158, 6, 'F');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (167, 7, 'V');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (171, 3, 'V');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (201, 9, 'F');
+INSERT INTO PRODUTO_FORNECEDOR (cod_produto, cod_fornecedor, disponibilidade) VALUES (223, 10, 'V');
 COMMIT;
 
