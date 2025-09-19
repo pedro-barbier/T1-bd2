@@ -8,8 +8,3 @@ As pesquisas pedidas no enunciado do trabalho estão localizadas na pasta `A2`.<
 Todas as tabelas e dados devem ser inseridos **exclusivamente** através dos arquivos localizados na pasta `A1`.  
 Os scripts presentes nesta pasta já incluem todos os comandos de criação de tabelas e os inserts iniciais fornecidos.<br>
 A pasta `arquivos_iniciais` serve apenas de organização e armazenamento dos scripts fornecidos inicialmente.
-
-**Não realize inserções ou criações de tabelas manualmente fora dos scripts da pasta `A1` para funcionamento desejado do programa.**
-
----
-- Utilize sempre os arquivos da pasta `A1` para garantir a integridade e conformidade do banco de dados e evitar quaisqueres erros.
